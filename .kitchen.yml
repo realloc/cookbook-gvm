@@ -1,0 +1,16 @@
+---
+driver:
+  name: vagrant
+  provider: vmware_fusion
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: skalera/dev
+
+suites:
+  - name: default
+    run_list:
+      - recipe[gvm::default]
+    attributes:
