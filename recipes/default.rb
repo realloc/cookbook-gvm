@@ -10,6 +10,12 @@
   end
 end
 
+cookbook_file '/etc/profile.d/gvm.sh' do
+  owner 'root'
+  group 'root'
+  mode 0755
+end
+
 bash 'install gvm' do
   user node['gvm']['user']
   group node['gvm']['group']
@@ -42,11 +48,4 @@ bash 'install go1.5' do
     gvm use go1.5 --default
   BASH
   creates "#{node['gvm']['home']}/.gvm/gos/go1.5"
-end
-
-file "#{node['gvm']['home']}/.bash_profile" do
-  content '[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"'
-  owner node['gvm']['user']
-  group node['gvm']['group']
-  mode 0755
 end
