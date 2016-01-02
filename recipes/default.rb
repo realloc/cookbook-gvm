@@ -32,7 +32,7 @@ bash 'install go1.4.2' do
   group node['gvm']['group']
   code <<-BASH
     source #{node['gvm']['home']}/.gvm/scripts/gvm
-    gvm install go1.4.2
+    gvm install go1.4.2 #{node['gvm']['options']}
   BASH
   creates "#{node['gvm']['home']}/.gvm/gos/go1.4.2"
 end
@@ -44,7 +44,7 @@ bash 'install go1.5' do
   code <<-BASH
     source #{node['gvm']['home']}/.gvm/scripts/gvm
     export GOROOT_BOOTSTRAP=#{node['gvm']['home']}/.gvm/gos/go1.4.2
-    gvm install go1.5
+    gvm install go1.5 #{node['gvm']['options']}
     gvm use go1.5 --default
   BASH
   creates "#{node['gvm']['home']}/.gvm/gos/go1.5"
