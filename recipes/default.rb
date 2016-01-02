@@ -49,3 +49,14 @@ bash 'install go1.5' do
   BASH
   creates "#{node['gvm']['home']}/.gvm/gos/go1.5"
 end
+
+# BUG: Can be not installed
+# Just temporary klufge
+bash 'set default go' do
+  user node['gvm']['user']
+  group node['gvm']['group']
+  code <<-BASH
+    source #{node['gvm']['home']}/.gvm/scripts/gvm
+    gvm use go#{node['gvm']['default']} --default
+  BASH
+end
